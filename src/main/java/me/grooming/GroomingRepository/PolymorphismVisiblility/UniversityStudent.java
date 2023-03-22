@@ -8,7 +8,7 @@ public class UniversityStudent {
 
 	/*
 	 * This isn't visible to even MathematicsStudent while rest are visible & are
-	 * inherited.
+	 * inherited by MathematicsStudent.
 	 */
 	private String studentMobileNumber;
 
@@ -28,6 +28,10 @@ public class UniversityStudent {
 		this.studentMobileNumber = studentMobileNumber;
 	}
 
+	/*
+	 * This method isn't visible to any other class, whereas other methods can be
+	 * used even outside the package due to them being public.
+	 */
 	private String getStudentMobileNumber() {
 		return studentMobileNumber;
 	}
