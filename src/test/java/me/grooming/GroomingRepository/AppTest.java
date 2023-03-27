@@ -1,4 +1,4 @@
-package com.grooming.GroomingRepository;
+package me.grooming.GroomingRepository;
 
 import static org.junit.Assert.assertTrue;
 
