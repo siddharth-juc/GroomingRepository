@@ -5,10 +5,10 @@ import java.util.Set;
 
 public class VowelStringsCounter {
 
-	public static int countVowelStrings (String[] words) {
-		
+	public static int countVowelStrings(String[] words) {
+
 		int countOfVowelStrings = 0;
-		
+
 		Set<Character> setOfVowels = new HashSet<Character>();
 		setOfVowels.add('A');
 		setOfVowels.add('a');
@@ -20,16 +20,16 @@ public class VowelStringsCounter {
 		setOfVowels.add('o');
 		setOfVowels.add('U');
 		setOfVowels.add('u');
-		
+
 		for (String word : words) {
-			
-			if(setOfVowels.contains(word.charAt(0)) && setOfVowels.contains(word.charAt(word.length() - 1)))
-				countOfVowelStrings ++;
-			
+
+			if (setOfVowels.contains(word.charAt(0)) && setOfVowels.contains(word.charAt(word.length() - 1)))
+				countOfVowelStrings++;
+
 		}
-		
+
 		return countOfVowelStrings;
-		
+
 	}
 
 }
