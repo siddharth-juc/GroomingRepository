@@ -8,12 +8,13 @@ public class SimpleThread extends Thread {
 		try {
 			
 			System.out.println("Running a Simple Thread with Name =====> " + this.getName());
+			System.out.println("Daemon Status                     =====> " + this.isDaemon());
 			
 			for(int i = 0; i < 25; i++) {
 				
 				System.out.println("[ " + this.getName() + " ] Iteration =====> \t" + i);
 				
-				Thread.sleep(250);
+				Thread.sleep(25);
 				
 			}
 			
