@@ -2,6 +2,7 @@ package me.grooming.GroomingRepository;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import me.grooming.GroomingRepository.ImmutableClassWorks.LibraryICard;
 import me.grooming.GroomingRepository.POJOWorks.Book;
 import me.grooming.GroomingRepository.PolymorphismVisiblility.MathematicsStudent;
 import me.grooming.GroomingRepository.PolymorphismVisiblility.UniversityStudent;
+import me.grooming.GroomingRepository.StreamsAndLambdas.SimpleStreamAndLambdaUser;
 import me.grooming.GroomingRepository.StringWorks.AnagramChecker;
 import me.grooming.GroomingRepository.StringWorks.BiCharacterPalindromeSubsequencesRemover;
 import me.grooming.GroomingRepository.StringWorks.BracketsClosureVerifier;
@@ -317,7 +319,54 @@ public class App {
 		System.out.println("Date of Enrollment		=====> " + libraryICard.getDateOfEnrollment().toString());
 		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
 		System.out.println();
-
+		
+		/*
+		 * Using Streams And Lambdas
+		 * 
+		 */
+		List<Integer> givenSeries = Arrays.asList(2, 4, 5, 24, 15, 31, 17, 28);
+		
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		System.out.println("Given Series of Integers :: ");
+		givenSeries.forEach((integer) -> System.out.println(integer));
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		
+		/*
+		 * Finding Product of Series of Integers
+		 * 
+		 */
+		Integer productOfSeries = SimpleStreamAndLambdaUser.findProductOfSeriesOfIntegers(givenSeries);
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		System.out.println("Product of Series       =====> " + productOfSeries);
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		
+		/*
+		 * Filtering out Even Integers From Given Series of Integers
+		 * 
+		 */
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		SimpleStreamAndLambdaUser.showEvenIntegersFromListOfGivenIntegers(givenSeries);
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		
+		/*
+		 * Squaring the Entire Series of Integers
+		 * 
+		 */
+		
+		List<Integer> givenSeriesSquared = SimpleStreamAndLambdaUser.squareSeriesOfIntegers(givenSeries);
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		System.out.println("Squared Series from given Series of Integers :: ");
+		givenSeriesSquared.forEach((integer) -> System.out.println(integer));
+		System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+		System.out.println();
+		
 	}
 
 }

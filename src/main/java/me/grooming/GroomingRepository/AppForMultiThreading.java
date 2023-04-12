@@ -1,5 +1,8 @@
 package me.grooming.GroomingRepository;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Semaphore;
@@ -10,7 +13,6 @@ import me.grooming.GroomingRepository.MultiThreadingInUse.SynchronizedDiaryWriti
 import me.grooming.GroomingRepository.MultiThreadingInUse.ThreadLocalUserThread;
 import me.grooming.GroomingRepository.MultiThreadingInUse.ThreadPool;
 import me.grooming.GroomingRepository.MultiThreadingInUse.BlockingQueueUsage.BlockingQueueModifierThread;
-import me.grooming.GroomingRepository.MultiThreadingInUse.ClassicalMessagePassing.ClassicalActorThread;
 import me.grooming.GroomingRepository.MultiThreadingInUse.ClassicalMessagePassing.ClassicalConsumerThread;
 import me.grooming.GroomingRepository.MultiThreadingInUse.ClassicalMessagePassing.ClassicalProducerThread;
 import me.grooming.GroomingRepository.MultiThreadingInUse.ConcurrentSequenceTracing.NaturalNumbersTracer;
@@ -91,15 +93,15 @@ public class AppForMultiThreading {
 
 		firstSimpleThread.start();
 		firstSimpleThread.join();
-		
+
 		/*
-		 * Also see the use of ThreadLocal through our Thread defined with it. 
+		 * Also see the use of ThreadLocal through our Thread defined with it.
 		 * 
 		 */
 		ThreadLocalUserThread threadLocalUserThread = new ThreadLocalUserThread("327X2723987YSJ0091");
-		
+
 		threadLocalUserThread.setName("Line TL24");
-		
+
 		threadLocalUserThread.start();
 		threadLocalUserThread.join();
 
@@ -165,10 +167,10 @@ public class AppForMultiThreading {
 		 * 
 		 */
 
-		ClassicalActorThread.setCapacity(5);
+		List<Integer> sharedIntegerBuffer = Collections.synchronizedList(new LinkedList<>());
 
-		Thread classicalProducerThread = new Thread(new ClassicalProducerThread("Line UP01"));
-		Thread classicalConsumerThread = new Thread(new ClassicalConsumerThread("Line DN01"));
+		Thread classicalProducerThread = new Thread(new ClassicalProducerThread("Line UP01", sharedIntegerBuffer));
+		Thread classicalConsumerThread = new Thread(new ClassicalConsumerThread("Line DN01", sharedIntegerBuffer));
 
 		classicalProducerThread.setName("Line UP01");
 		classicalConsumerThread.setName("Line DN01");
@@ -263,17 +265,17 @@ public class AppForMultiThreading {
 		 * 
 		 * firstClubDesignateThread.join(); secondClubDesignateThread.join();
 		 */
-		
+
 		/*
 		 * Let's also see implementation of Blocking Queue.
 		 * 
 		 */
 		BlockingQueueModifierThread firstModifierThread = new BlockingQueueModifierThread(true);
 		BlockingQueueModifierThread secondModifierThread = new BlockingQueueModifierThread(false);
-		
+
 		firstModifierThread.setName("Line QT1");
 		secondModifierThread.setName("Line QT2");
-		
+
 		/*
 		 * firstModifierThread.start(); firstModifierThread.join();
 		 * 

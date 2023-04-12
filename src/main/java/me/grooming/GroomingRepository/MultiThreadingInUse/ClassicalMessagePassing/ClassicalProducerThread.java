@@ -1,24 +1,23 @@
 package me.grooming.GroomingRepository.MultiThreadingInUse.ClassicalMessagePassing;
 
-public class ClassicalProducerThread extends ClassicalActorThread {
+import java.util.List;
+
+public class ClassicalProducerThread implements Runnable {
 
 	private String threadName;
 
-	public ClassicalProducerThread(String threadName) {
+	private List<Integer> sharedIntegerBuffer;
 
-		this.setThreadName(threadName);
+	public ClassicalProducerThread(String threadName, List<Integer> sharedIntegerBuffer) {
+
+		this.threadName = threadName;
+		this.sharedIntegerBuffer = sharedIntegerBuffer;
 
 	}
 
 	public String getThreadName() {
 
 		return threadName;
-
-	}
-
-	public void setThreadName(String threadName) {
-
-		this.threadName = threadName;
 
 	}
 
@@ -33,22 +32,22 @@ public class ClassicalProducerThread extends ClassicalActorThread {
 
 				synchronized (this) {
 
-					while (ClassicalActorThread.integerBuffer.size() >= 1) {
-						
+					while (sharedIntegerBuffer.size() == 1) {
+
 						/*
 						 * This tells the thread to go into the waiting state.
 						 * 
 						 */
 						wait();
-						
+
 					}
 
 					System.out.println("[ Producer Thread ] [ " + this.getThreadName() + " ] :: messageValue :::: "
 							+ messageValue);
 
-					ClassicalActorThread.integerBuffer.add(messageValue);
-					
-					messageValue ++;
+					sharedIntegerBuffer.add(messageValue);
+
+					messageValue++;
 
 					/*
 					 * This notifies all the threads that are waiting for this thread to finish its

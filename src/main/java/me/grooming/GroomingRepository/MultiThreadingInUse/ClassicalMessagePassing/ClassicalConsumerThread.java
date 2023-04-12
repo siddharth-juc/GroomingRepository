@@ -1,24 +1,23 @@
 package me.grooming.GroomingRepository.MultiThreadingInUse.ClassicalMessagePassing;
 
-public class ClassicalConsumerThread extends ClassicalActorThread {
+import java.util.List;
+
+public class ClassicalConsumerThread implements Runnable {
 
 	private String threadName;
 
-	public ClassicalConsumerThread(String threadName) {
+	private List<Integer> sharedIntegerBuffer;
 
-		this.setThreadName(threadName);
+	public ClassicalConsumerThread(String threadName, List<Integer> sharedIntegerBuffer) {
+
+		this.threadName = threadName;
+		this.sharedIntegerBuffer = sharedIntegerBuffer;
 
 	}
 
 	public String getThreadName() {
 
 		return threadName;
-
-	}
-
-	public void setThreadName(String threadName) {
-
-		this.threadName = threadName;
 
 	}
 
@@ -31,7 +30,7 @@ public class ClassicalConsumerThread extends ClassicalActorThread {
 
 				synchronized (this) {
 
-					while (ClassicalActorThread.integerBuffer.size() == 0) {
+					while (sharedIntegerBuffer.size() == 0) {
 
 						/*
 						 * This tells the thread to go into the waiting state.
@@ -41,7 +40,7 @@ public class ClassicalConsumerThread extends ClassicalActorThread {
 
 					}
 
-					int messageValue = ClassicalActorThread.integerBuffer.removeFirst();
+					int messageValue = sharedIntegerBuffer.remove(0);
 
 					System.out.println("[ Consumer Thread ] [ " + this.getThreadName() + " ] :: messageValue :::: "
 							+ messageValue);
