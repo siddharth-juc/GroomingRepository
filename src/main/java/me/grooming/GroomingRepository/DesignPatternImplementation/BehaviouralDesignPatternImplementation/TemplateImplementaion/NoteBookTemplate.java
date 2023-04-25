@@ -7,5 +7,13 @@ public abstract class NoteBookTemplate {
 	public abstract void markDetailsOnNoteBook();
 	
 	public abstract void takeNotes();
+	
+	public final void prepareNoteBook() {
+		
+		selectNoteBookType();
+		markDetailsOnNoteBook();
+		takeNotes();
+		
+	}
 
 }
